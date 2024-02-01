@@ -13,11 +13,23 @@ const List<Book> initialBooks = [
   Book(title: '個と宇宙', author: 'エルンスト・カッシーラー', explanation: '『省庁形式の哲学』や『人間』等で著名な20世紀哲学の巨匠が、『自然-認識』を基底に捉えて個性的続一体としてのルネサンス哲学の'
       '全体像を描き出した名著。多様で複雑なルネサンス哲学の構造と展開が、時代の精神史的・文化的文脈に位置づけ浮き彫りにされている。')
 ];
-final listProvider = Provider<List<Book>>((ref){
-  return initialBooks;
-});
+
+//final initialBook = Provider<List<Book>>((ref) => initialBooks);
+
 enum Genre{any, thought,history,science,literature,art}
 final genreProvider = StateProvider<Genre>((ref) => Genre.any);
 
+final listProvider = Provider<List<Book>>((ref) {
+  final genres = ref.watch(genreProvider); //本のジャンル
+
+ // switch (Genre) {
+  //  case Genre.any:
+ //   return books.
+ // }
+
+ return initialBooks;
+});
 final bookStream = StreamProvider<QuerySnapshot>((ref) {
   return FirebaseFirestore.instance.collection('selectsBook').snapshots();});
+
+

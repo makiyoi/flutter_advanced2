@@ -15,7 +15,7 @@ class List extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncValue = ref.watch(bookStream);
+    final AsyncValue <QuerySnapshot> booksStream = ref.watch(bookStream);
     return  Scaffold(
       appBar: AppBar(
         title: Text('蔵書一覧',style: TextStyle(color:Colors.brown[200],fontSize: 20,),),
@@ -26,30 +26,54 @@ class List extends ConsumerWidget {
         ],
         backgroundColor: Colors.brown,
       ),
-      body: Column(
-        children: [
-          asyncValue.when(data: (data) => Text(data.toString()),
-            error: (err, _) => Text(err.toString()),
-            loading: () => const CircularProgressIndicator(), ),
-          //StreamBuilder<QuerySnapshot<Book>>(
-           // stream: userRef.snapshots(),
-           // builder: (context, snapshot) {
-             // if(snapshot.hasData) {
-               // final data = snapshot.data!;
-             //   return Expanded(
-               //   child: ListView.builder(
-                 //     itemCount: data.docs.length,
-                   //   itemBuilder: (context, index) {
-                   //     return BookCard(book: data.docs[index].data());
-                    //  }
-             //     ),
-             //   );
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            booksStream.when(
+              error: (err, _) => Text(err.toString()),
+              loading: () => const CircularProgressIndicator(),
+              data: (books) {
+                final docs = books.docs;
+                return Expanded(
+                    child: ListView.builder(
+                        itemCount: docs.length,
+                        itemBuilder: (context, index) {
+                          final doc = docs[index].data() as Map<String,dynamic>;
+                          return BookCard(book: doc[booksStream],);
+
+
+
+                       //     ListTile(
+                       //     leading: const Icon(Icons.add),
+                      //      title:
+                      //    );
+                        }
+                        )
+                );
+              }
+            ),
+
+            //StreamBuilder<QuerySnapshot<Book>>(
+             // stream: userRef.snapshots(),
+             // builder: (context, snapshot) {
+               // if(snapshot.hasData) {
+                 // final data = snapshot.data!;
+               //   return Expanded(
+                 //   child: ListView.builder(
+                   //     itemCount: data.docs.length,
+                     //   itemBuilder: (context, index) {
+                     //     return BookCard(book: data.docs[index].data());
+                      //  }
+               //     ),
+               //   );
+              //  }
+             //   return const  Center(child: CircularProgressIndicator(),);
             //  }
-           //   return const  Center(child: CircularProgressIndicator(),);
-          //  }
-         // ),
+           // ),
     ],
     ),
+      ),
     );
   }
 }
