@@ -34,20 +34,18 @@ class List extends ConsumerWidget {
               error: (err, _) => Text(err.toString()),
               loading: () => const CircularProgressIndicator(),
               data: (books) {
-                final docs = books.docs;
+                final data = books.docs;
                 return Expanded(
                     child: ListView.builder(
-                        itemCount: docs.length,
+                        itemCount: data.length,
                         itemBuilder: (context, index) {
-                          final doc = docs[index].data() as Map<String,dynamic>;
-                          return BookCard(book: doc[booksStream],);
-
-
-
-                       //     ListTile(
-                       //     leading: const Icon(Icons.add),
-                      //      title:
-                      //    );
+                       //   return BookCard(book:doc['title']);
+                          return Card(
+                            child: ListTile(
+                              leading: const Icon(Icons.book),
+                             title: Text('$data')
+                           ),
+                          );
                         }
                         )
                 );
@@ -78,29 +76,31 @@ class List extends ConsumerWidget {
   }
 }
 
-class BookCard extends StatelessWidget {
-  const BookCard({Key? key,required this.book}) : super(key: key);
-final Book book;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(5),
-      child: Card(
-        child: Container(
-          padding: const EdgeInsets.all(5),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Text(book.title,style: const TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-                  Text(book.author,style: const TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-                ],
-              ),
-              Text(book.explanation,style: const TextStyle(fontSize: 16,color: Color(0xff555555)),),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
+
+
+//class BookCard extends StatelessWidget {
+//  const BookCard({Key? key,required this.book}) : super(key: key);
+//final Book book;
+//  @override
+ // Widget build(BuildContext context) {
+ //   return Container(
+  //    margin: const EdgeInsets.all(5),
+  //    child: Card(
+  //      child: Container(
+  //        padding: const EdgeInsets.all(5),
+    //      child: Column(
+      //      children: [
+        //      Row(
+          //      children: [
+            //      Text(book.title,style: const TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+              //    Text(book.author,style: const TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+           //     ],
+          //    ),
+       //       Text(book.explanation,style: const TextStyle(fontSize: 16,color: Color(0xff555555)),),
+        //    ],
+        //  ),
+       // ),
+     // ),
+   // );
+  //}
+//}
