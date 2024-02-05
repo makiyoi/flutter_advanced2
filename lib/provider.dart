@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'models.dart';
 
-const List<Book> initialBooks = [
+const List<Book> selectsBooks = [
   Book(title: '概念記法', author: 'ゴットローブ・フレーゲ', explanation: '本書はアリストテレス以来の論理学を根本的に革新し、現代論理学と現代哲学への道を切いた記念碑的著作である。'
       'フレーゲの目的は算術を基礎づけることのあり、そのために新しい論理学を作り出した。'),
   Book(title: 'スレイマーンの戴冠', author: 'アメリカンショートヘア', explanation: '昼'),
@@ -19,16 +19,16 @@ const List<Book> initialBooks = [
 enum Genre{any, thought,history,science,literature,art}
 final genreProvider = StateProvider<Genre>((ref) => Genre.any);
 
-final listProvider = Provider<List<Book>>((ref) {
-  final genres = ref.watch(genreProvider); //本のジャンル
+//final listProvider = Provider<List<Book>>((ref) {
+ // final genres = ref.watch(genreProvider); //本のジャンル
 
  // switch (Genre) {
   //  case Genre.any:
  //   return books.
  // }
 
- return initialBooks;
-});
+ //return initialBooks;
+//});
 final bookStream = StreamProvider<QuerySnapshot>((ref) {
   return FirebaseFirestore.instance.collection('selectsBook').snapshots();});
 

@@ -34,8 +34,8 @@ class List extends ConsumerWidget {
             booksStream.when(
               error: (err, _) => Text(err.toString()),
               loading: () => const CircularProgressIndicator(),
-              data:(books) { //(QuerySnapshot initialBooks) {
-                 final data = books.docs;
+              data:(selectsBooks) { //QuerySnapshotはdocumentSnapshotの集まり
+                 final data = selectsBooks.docs; //documentSnapshotのリストを取得する
                  return Expanded(
                      child: ListView.builder(
                          itemCount: data.length,
