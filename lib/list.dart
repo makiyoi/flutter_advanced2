@@ -13,6 +13,7 @@ class List extends ConsumerWidget {
       fromFirestore: (snapshots, _ ) => Book.fromJson(snapshots.data()! ),
       toFirestore: (book, _ )=> book.toJson());
 
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final AsyncValue <QuerySnapshot> booksStream = ref.watch(bookStream);
@@ -33,49 +34,48 @@ class List extends ConsumerWidget {
             booksStream.when(
               error: (err, _) => Text(err.toString()),
               loading: () => const CircularProgressIndicator(),
-              data: (books) {
-                final data = books.docs;
-                return Expanded(
-                    child: ListView.builder(
-                        itemCount: data.length,
-                        itemBuilder: (context, index) {
-                       //   return BookCard(book:doc['title']);
-                          return Card(
-                            child: ListTile(
-                              leading: const Icon(Icons.book),
-                             title: Text('$data')
-                           ),
-                          );
-                        }
-                        )
-                );
-              }
-            ),
-
-            //StreamBuilder<QuerySnapshot<Book>>(
-             // stream: userRef.snapshots(),
-             // builder: (context, snapshot) {
-               // if(snapshot.hasData) {
-                 // final data = snapshot.data!;
-               //   return Expanded(
-                 //   child: ListView.builder(
-                   //     itemCount: data.docs.length,
-                     //   itemBuilder: (context, index) {
-                     //     return BookCard(book: data.docs[index].data());
-                      //  }
-               //     ),
-               //   );
-              //  }
-             //   return const  Center(child: CircularProgressIndicator(),);
-            //  }
-           // ),
-    ],
-    ),
+              data:(books) { //(QuerySnapshot initialBooks) {
+                 final data = books.docs;
+                 return Expanded(
+                     child: ListView.builder(
+                         itemCount: data.length,
+                         itemBuilder: (context, index) {
+                           return Card(
+                             child: ListTile(
+                               leading: const Icon(Icons.book),
+                               title: Text(data[index]['title'] + '-' + data[index]['author'],
+                                   style: const TextStyle(fontWeight: FontWeight.bold)),
+                               subtitle: Text(data[index]['explanation']),
+                             ),
+                           );
+                         }
+                         )
+                 );
+              },
+              )
+          ],
+        ),
       ),
-    );
+     );
   }
 }
 
+//   child: ListView(
+//     children:
+//     initialBooks.docs.map((listBooks){
+//      return Card(
+//      child: ListTile(
+//        title: Text(listBooks['title'] +'-' + listBooks['author'],
+//         style: const TextStyle(fontWeight: FontWeight.bold),),
+//     subtitle: Text(listBooks['explanation']),
+//     ),
+//     );
+//    }).toList(),
+//   ),
+//     );
+//    }
+//    )
+//],
 
 
 //class BookCard extends StatelessWidget {
