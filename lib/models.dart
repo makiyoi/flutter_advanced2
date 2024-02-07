@@ -6,7 +6,7 @@ class Book{
     required this.title,
     required this.author,
     required this.explanation,
-    //required this.genre,
+    required this.genre,
 
   });
 
@@ -15,20 +15,20 @@ class Book{
     title: json['title']! as String,
     author: json['author']! as String,
     explanation: json['explanation']! as String,
-    // genre: json['genre']! as String,
+    genre: json['genre']! as String,
   );
 
   final String title;
   final String author;
   final String explanation;
-  // final String genre;
+   final String genre;
 
   Book copyWith({String? title, String? author,String? explanation,String? genre}) {
     return Book(
       title:  title?? this.title,
       author: author?? this.author,
       explanation:  explanation?? this.explanation,
-      // genre:  genre?? this.genre,
+      genre:  genre?? this.genre,
     );
   }
 
@@ -37,7 +37,7 @@ class Book{
       'title': title,
       'author': author,
       'explanation': explanation,
-      // 'genre': genre,
+      'genre': genre,
     };
   }
 

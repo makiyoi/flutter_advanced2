@@ -14,8 +14,7 @@ class Search extends ConsumerStatefulWidget {
 
 class _SearchState extends ConsumerState<Search> {
 
-  Genre? selectedGenre;
-
+ // Genre? selectedGenre;
   final CollectionReference<Book> userRef = FirebaseFirestore.instance.collection('selectsBook')
       .withConverter<Book>(
       fromFirestore: (snapshots, _ ) => Book.fromJson(snapshots.data()! ),
@@ -34,20 +33,16 @@ class _SearchState extends ConsumerState<Search> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(15.0),
-          //Consumer(
-          // builder: (context, ref, child) {
-          // return
           child:Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              //    child!,
               const Text('検索条件',style: TextStyle(fontSize: 30,color: Colors.brown),),
               const SizedBox(height: 30,),
               Text('ジャンル',style: TextStyle(fontSize: 15,color: Colors.brown[200]),),
               const SizedBox(height: 10,),
               Consumer(
                   builder: (context,ref, _) {
-
+                  //final selectBook = ref.watch(bookStream);
                     return DropdownButton<Genre>(
                       value: ref.watch(genreProvider),
                       onChanged: (value) => ref.read(genreProvider.notifier).state=value!,
@@ -103,10 +98,6 @@ class _SearchState extends ConsumerState<Search> {
                     labelText: 'キーワード',
                     border: OutlineInputBorder(
                         borderSide: BorderSide()),
-
-
-
-
                   ),
                 ),
               )
