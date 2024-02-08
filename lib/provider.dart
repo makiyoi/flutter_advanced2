@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'models.dart';
 
-const List<Book> selectsBooks = [
+const List<Book> selectsBook = [
   Book(title: '概念記法', author: 'ゴットローブ・フレーゲ', explanation: '本書はアリストテレス以来の論理学を根本的に革新し、現代論理学と現代哲学への道を切いた記念碑的著作である。'
       'フレーゲの目的は算術を基礎づけることのあり、そのために新しい論理学を作り出した。',genre: '人文・思想'),
   Book(title: 'スレイマーンの戴冠', author: 'ジャン・シャルダン', explanation: 'フランスの宝石商が、１７世紀ペルシアの王位継承の顛末に関する宮廷史家の記録を、自らの見聞も交えて伝える。さまざまな思惑、'
@@ -20,22 +20,30 @@ final genreProvider = StateProvider<Genre>((ref) => Genre.any); //本のジャ�
 
 
 
-final bookStream = StreamProvider<QuerySnapshot>((ref) {
+
+final bookStreamProvider = StreamProvider<QuerySnapshot>((ref) {
 final genres = ref.watch(genreProvider); //本のジャンル
-switch(genres){
-  case Genre.any:
-  return FirebaseFirestore.instance.collection('selectsBook').where(genres,isEqualTo: '指定なし').snapshots();
-  case Genre.thought:
-    return FirebaseFirestore.instance.collection('selectsBook').where(genres,isEqualTo: '人文・思想').snapshots();
-  case Genre.history:
-    return FirebaseFirestore.instance.collection('selectsBook').where(genres,isEqualTo: '歴史・地理').snapshots();
-  case Genre.science :
-    return FirebaseFirestore.instance.collection('selectsBook').where(genres,isEqualTo: '科学・工学').snapshots();
-  case Genre.literature :
-    return FirebaseFirestore.instance.collection('selectsBook').where(genres,isEqualTo: '文学・評論').snapshots();
-  case Genre.art :
-    return FirebaseFirestore.instance.collection('selectsBook').where(genres,isEqualTo: 'アート・建築').snapshots();
-    default: return FirebaseFirestore.instance.collection('selectsBook').snapshots();
-}
+  switch (genres) {
+    case Genre.any:
+      return FirebaseFirestore.instance.collection('selectsBook').where(
+          genres, isEqualTo: '指定なし').snapshots();
+    case Genre.thought:
+      return FirebaseFirestore.instance.collection('selectsBook').where(
+          genres, isEqualTo: '人文・思想').snapshots();
+    case Genre.history:
+      return FirebaseFirestore.instance.collection('selectsBook').where(
+          genres, isEqualTo: '歴史・地理').snapshots();
+    case Genre.science :
+      return FirebaseFirestore.instance.collection('selectsBook').where(
+          genres, isEqualTo: '科学・工学').snapshots();
+    case Genre.literature :
+      return FirebaseFirestore.instance.collection('selectsBook').where(
+          genres, isEqualTo: '文学・評論').snapshots();
+    case Genre.art :
+      return FirebaseFirestore.instance.collection('selectsBook').where(
+          genres, isEqualTo: 'アート・建築').snapshots();
+    default:
+      return FirebaseFirestore.instance.collection('selectsBook').snapshots();
+  }
 });
 

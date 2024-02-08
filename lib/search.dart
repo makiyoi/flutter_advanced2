@@ -42,10 +42,13 @@ class _SearchState extends ConsumerState<Search> {
               const SizedBox(height: 10,),
               Consumer(
                   builder: (context,ref, _) {
-                  //final selectBook = ref.watch(bookStream);
+                  final booksStream = ref.watch(bookStreamProvider);
                     return DropdownButton<Genre>(
                       value: ref.watch(genreProvider),
-                      onChanged: (value) => ref.read(genreProvider.notifier).state=value!,
+                      onChanged: (value) {
+                       ref.read(genreProvider.notifier).state = value!;
+                        booksStream;
+                      },
                       iconEnabledColor: Colors.brown,
                       iconSize: 30,
                       icon: const Icon(Icons.arrow_downward),
@@ -93,7 +96,8 @@ class _SearchState extends ConsumerState<Search> {
                SizedBox(
                 width: 200,
                 child: TextField(
-                  onChanged: (value){title=value;},
+                  onChanged: (value){ref.read(genreProvider.notifier).state = Genre.art;
+                    },
                   decoration: const InputDecoration(
                     labelText: 'キーワード',
                     border: OutlineInputBorder(

@@ -19,7 +19,7 @@ class List extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final AsyncValue <QuerySnapshot> booksStream = ref.watch(bookStream);
+    final AsyncValue <QuerySnapshot> booksStream = ref.watch(bookStreamProvider);
     return  Scaffold(
       appBar: AppBar(
         title: Text('蔵書一覧',style: TextStyle(color:Colors.brown[200],fontSize: 20,),),
