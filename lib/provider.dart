@@ -18,30 +18,27 @@ const List<Book> selectsBook = [
 enum Genre{any, thought,history,science,literature,art}
 final genreProvider = StateProvider<Genre>((ref) => Genre.any); //本のジャンル
 
-
-
-
 final bookStreamProvider = StreamProvider<QuerySnapshot>((ref) {
 final genres = ref.watch(genreProvider); //本のジャンル
   switch (genres) {
     case Genre.any:
       return FirebaseFirestore.instance.collection('selectsBook').where(
-          genres, isEqualTo: '指定なし').snapshots();
+          'genre', isEqualTo: '指定なし').snapshots();
     case Genre.thought:
       return FirebaseFirestore.instance.collection('selectsBook').where(
-          genres, isEqualTo: '人文・思想').snapshots();
+          'genre', isEqualTo: '人文・思想').snapshots();
     case Genre.history:
       return FirebaseFirestore.instance.collection('selectsBook').where(
-          genres, isEqualTo: '歴史・地理').snapshots();
+          'genre', isEqualTo: '歴史・地理').snapshots();
     case Genre.science :
       return FirebaseFirestore.instance.collection('selectsBook').where(
-          genres, isEqualTo: '科学・工学').snapshots();
+          'genre', isEqualTo: '科学・工学').snapshots();
     case Genre.literature :
       return FirebaseFirestore.instance.collection('selectsBook').where(
-          genres, isEqualTo: '文学・評論').snapshots();
+          'genre', isEqualTo: '文学・評論').snapshots();
     case Genre.art :
       return FirebaseFirestore.instance.collection('selectsBook').where(
-          genres, isEqualTo: 'アート・建築').snapshots();
+          'genre', isEqualTo: 'アート・建築').snapshots();
     default:
       return FirebaseFirestore.instance.collection('selectsBook').snapshots();
   }

@@ -14,11 +14,11 @@ class Search extends ConsumerStatefulWidget {
 
 class _SearchState extends ConsumerState<Search> {
 
- // Genre? selectedGenre;
   final CollectionReference<Book> userRef = FirebaseFirestore.instance.collection('selectsBook')
       .withConverter<Book>(
       fromFirestore: (snapshots, _ ) => Book.fromJson(snapshots.data()! ),
       toFirestore: (book, _ )=> book.toJson());
+
 
   @override
   Widget build(BuildContext context) {
@@ -42,12 +42,10 @@ class _SearchState extends ConsumerState<Search> {
               const SizedBox(height: 10,),
               Consumer(
                   builder: (context,ref, _) {
-                  final booksStream = ref.watch(bookStreamProvider);
                     return DropdownButton<Genre>(
                       value: ref.watch(genreProvider),
                       onChanged: (value) {
                        ref.read(genreProvider.notifier).state = value!;
-                        booksStream;
                       },
                       iconEnabledColor: Colors.brown,
                       iconSize: 30,
@@ -56,7 +54,6 @@ class _SearchState extends ConsumerState<Search> {
                         height: 2,
                         color: Colors.brown,
                       ),
-                      //onTap: (value)=> Genre,
                       items: const [
                         DropdownMenuItem(
                           value: Genre.any,
@@ -96,7 +93,7 @@ class _SearchState extends ConsumerState<Search> {
                SizedBox(
                 width: 200,
                 child: TextField(
-                  onChanged: (value){ref.read(genreProvider.notifier).state = Genre.art;
+                  onChanged: (value){//ref.read(genreProvider.notifier).state = Genre.art;
                     },
                   decoration: const InputDecoration(
                     labelText: 'キーワード',
@@ -105,9 +102,7 @@ class _SearchState extends ConsumerState<Search> {
                   ),
                 ),
               )
-
             ],
-
           ),
         ),
       ),
