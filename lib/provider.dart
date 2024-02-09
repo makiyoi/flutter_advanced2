@@ -1,6 +1,7 @@
 
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/scheduler.dart';
 //import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'models.dart';
@@ -35,11 +36,12 @@ final genres = ref.watch(genreProvider); //本のジャンル
   }
 });
 
-final listFilterProvider = StateProvider((ref) => '');//フィルター
-final filterProvider = Provider<QuerySnapshot>((ref){ //キーワード一致検索
+final listFilterProvider = StateProvider<String>((ref) => '');//フィルター
+final filterProvider = Provider<List<Book>>((ref){ //キーワード一致検索
   final bookStream = ref.watch(bookStreamProvider);
-  final filter = ref.watch(listFilterProvider);
+  final filter = ref.watch(listFilterProvider); //リストの内容と、フィルターを紐づける
 
-  return;
-}
+  return ;
+
+ }
 );
