@@ -1,5 +1,3 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/scheduler.dart';
 //import 'package:firebase_core/firebase_core.dart';
@@ -39,9 +37,12 @@ final genres = ref.watch(genreProvider); //本のジャンル
 final listFilterProvider = StateProvider<String>((ref) => '');//フィルター
 final filterProvider = Provider<List<Book>>((ref){ //キーワード一致検索
   final bookStream = ref.watch(bookStreamProvider);
-  final filter = ref.watch(listFilterProvider); //リストの内容と、フィルターを紐づける
+  final filter = ref.watch(listFilterProvider);
+switch(filter){
+  case '':
+  return bookStream
+}
 
-  return ;
 
  }
 );

@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 @immutable
 class Book{
   const Book({
-    required this.title,
-    required this.author,
-    required this.explanation,
-    required this.genre,
-
+    required this.title,   //本のタイトル
+    required this.author,  //本の著者
+    required this.explanation,  //本の内容
+    required this.genre,     //本のジャンル
+    // this.contain =false,    //含むか含まないか
   });
 
   Book.fromJson(Map<String, Object?> json)
@@ -16,12 +16,14 @@ class Book{
     author: json['author']! as String,
     explanation: json['explanation']! as String,
     genre: json['genre']! as String,
+   // contain: json['contain']! as bool,
   );
 
   final String title;
   final String author;
   final String explanation;
    final String genre;
+ //  final bool contain;
 
   Book copyWith({String? title, String? author,String? explanation,String? genre}) {
     return Book(
@@ -29,6 +31,7 @@ class Book{
       author: author?? this.author,
       explanation:  explanation?? this.explanation,
       genre:  genre?? this.genre,
+    //  contain: contain?? this.contain,
     );
   }
 
@@ -38,6 +41,7 @@ class Book{
       'author': author,
       'explanation': explanation,
       'genre': genre,
+   //   'contain': contain,
     };
   }
 
