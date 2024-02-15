@@ -22,8 +22,6 @@ class _SearchState extends ConsumerState<Search> {
 
   @override
   Widget build(BuildContext context) {
-    String title = '';
-
     return Scaffold(
       appBar: AppBar(
         title: Text('検索条件',style: TextStyle(color:Colors.brown[200],fontSize: 20,),),
@@ -94,7 +92,7 @@ class _SearchState extends ConsumerState<Search> {
                 width: 200,
                 child: TextField(
                   onChanged: (value){
-                    ref.read(bookStreamProvider);
+                    ref.read(listFilterProvider.notifier).state = value;
                     },
                   decoration: const InputDecoration(
                     labelText: 'キーワード',
