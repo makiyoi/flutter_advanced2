@@ -39,6 +39,11 @@ class List extends ConsumerWidget {
               loading: () => const CircularProgressIndicator(),
               data:(selectsBooks) { //QuerySnapshotはdocumentSnapshotの集まり
                  final data = selectsBooks.docs; //documentSnapshotのリストを取得する
+                final filter = ref.watch(listFilterProvider);
+                 switch(filter){
+                   case'':
+
+                 }
                  return Expanded(
                      child: ListView.builder(
                          itemCount: data.length,

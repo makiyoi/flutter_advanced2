@@ -39,7 +39,7 @@ final genres = ref.watch(genreProvider); //本のジャンル
 final listFilterProvider = StateProvider<String>((ref) => '');//フィルター
 
 
-final filterProvider = Provider<List<Book>>((ref){ //キーワード一致検索
+final filterBookSteamProvider = Provider<List<Book>>((ref){ //キーワード一致検索
   final bookStream = ref.watch(bookStreamProvider);
   final filter = ref.watch(listFilterProvider);
   return bookStream.when(
@@ -47,7 +47,6 @@ final filterProvider = Provider<List<Book>>((ref){ //キーワード一致検索
       error: (err, _) => Text(err.toString());
       data:(selectbooks){
     final data = selectsBooks.docs; //documentSnapshotのリストを取得する
-
             }
         );
   },
