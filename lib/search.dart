@@ -93,7 +93,8 @@ class _SearchState extends ConsumerState<Search> {
                SizedBox(
                 width: 200,
                 child: TextField(
-                  onChanged: (value){//ref.read(genreProvider.notifier).state = Genre.art;
+                  onChanged: (value){
+                    ref.read(bookStreamProvider);
                     },
                   decoration: const InputDecoration(
                     labelText: 'キーワード',

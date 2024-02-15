@@ -1,10 +1,6 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 //import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'models.dart';
 
 
 enum Genre{any, thought,history,science,literature,art}
@@ -38,16 +34,3 @@ final genres = ref.watch(genreProvider); //本のジャンル
 
 final listFilterProvider = StateProvider<String>((ref) => '');//フィルター
 
-
-final filterBookSteamProvider = Provider<List<Book>>((ref){ //キーワード一致検索
-  final bookStream = ref.watch(bookStreamProvider);
-  final filter = ref.watch(listFilterProvider);
-  return bookStream.when(
-      loading: ()=> CircularProgressIndicator(),
-      error: (err, _) => Text(err.toString());
-      data:(selectbooks){
-    final data = selectsBooks.docs; //documentSnapshotのリストを取得する
-            }
-        );
-  },
-  );
