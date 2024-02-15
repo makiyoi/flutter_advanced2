@@ -40,7 +40,7 @@ class List extends ConsumerWidget {
               data:(selectsBooks) { //QuerySnapshotはdocumentSnapshotの集まり
                  final data = selectsBooks.docs; //documentSnapshotのリストを取得する
                 final filter = ref.watch(listFilterProvider);//フィルターを監視する
-                    data.where((element) =>  filter.contains('')).toList();
+                    data.where((element) =>  filter.contains('')).toList();//filterで入力した文字がdataの内容と一致したものを表示する
                  return Expanded(
                      child: ListView.builder(
                          itemCount: data.length,
