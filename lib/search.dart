@@ -14,10 +14,10 @@ class Search extends ConsumerStatefulWidget {
 
 class _SearchState extends ConsumerState<Search> {
 
-  final CollectionReference<Book> userRef = FirebaseFirestore.instance.collection('selectsBook')
-      .withConverter<Book>(
-      fromFirestore: (snapshots, _ ) => Book.fromJson(snapshots.data()! ),
-      toFirestore: (book, _ )=> book.toJson());
+ // final CollectionReference<Book> userRef = FirebaseFirestore.instance.collection('selectsBook')
+   //   .withConverter<Book>(
+   //   fromFirestore: (snapshots, _ ) => Book.fromJson(snapshots.data()! ),
+   //   toFirestore: (book, _ )=> book.toJson());
 
 
   @override

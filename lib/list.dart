@@ -6,14 +6,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_advanced_2/models.dart';
 
 class List extends ConsumerWidget {
-   List({super.key});
+   const List({super.key});
 
 
 
-  final CollectionReference<Book> userRef = FirebaseFirestore.instance.collection('selectsBook')
-  .withConverter<Book>(
-      fromFirestore: (snapshots, _ ) => Book.fromJson(snapshots.data()! ),
-      toFirestore: (book, _ )=> book.toJson());
+ // final CollectionReference<Book> userRef = FirebaseFirestore.instance.collection('selectsBook')
+//  .withConverter<Book>(
+ //     fromFirestore: (snapshots, _ ) => Book.fromJson(snapshots.data()! ),
+  //    toFirestore: (book, _ )=> book.toJson());
 
 
 
@@ -40,8 +40,8 @@ class List extends ConsumerWidget {
               data:(selectBooks) { //QuerySnapshotはdocumentSnapshotの集まり
                  final data = selectBooks.docs; //documentSnapshotのリストを取得する
                 final filter = ref.watch(listFilterProvider);//フィルターを監視する
-                    data.where((element) =>  element.contains(filter)).toList();
-                 //本の内容にfilterが含まれるものを表示する。
+                 data.where((element) =>  element.contains(filter)).toList(); //本の内容にfilterが含まれるものを表示する。
+                 FirebaseFirestore.instance.collection('selectsBook').where('explanation',isEqualTo: '').snapshots();
                  return Expanded(
                      child: ListView.builder(
                          itemCount: data.length,
