@@ -37,10 +37,11 @@ class List extends ConsumerWidget {
             booksStream.when(
               error: (err, _) => Text(err.toString()),
               loading: () => const CircularProgressIndicator(),
-              data:(selectsBooks) { //QuerySnapshotはdocumentSnapshotの集まり
-                 final data = selectsBooks.docs; //documentSnapshotのリストを取得する
+              data:(selectBooks) { //QuerySnapshotはdocumentSnapshotの集まり
+                 final data = selectBooks.docs; //documentSnapshotのリストを取得する
                 final filter = ref.watch(listFilterProvider);//フィルターを監視する
-                    data.where((element) =>  filter.contains('')).toList();//filterで入力した文字がdataの内容と一致したものを表示する
+                    data.where((element) =>  element.contains(filter)).toList();
+                 //本の内容にfilterが含まれるものを表示する。
                  return Expanded(
                      child: ListView.builder(
                          itemCount: data.length,
