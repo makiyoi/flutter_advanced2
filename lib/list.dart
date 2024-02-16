@@ -40,8 +40,8 @@ class List extends ConsumerWidget {
               data:(selectBooks) { //QuerySnapshotはdocumentSnapshotの集まり
                  final data = selectBooks.docs; //documentSnapshotのリストを取得する
                 final filter = ref.watch(listFilterProvider);//フィルターを監視する
-                 data.where((element) =>  element.contains(filter)).toList(); //本の内容にfilterが含まれるものを表示する。
-                 FirebaseFirestore.instance.collection('selectsBook').where('explanation',isEqualTo: '').snapshots();
+                 data.where((explanation) =>  explanation.contains(filter)).toList();
+                 //リストの中の本の内容(explanation)にfilterが含まれるものを取得する。
                  return Expanded(
                      child: ListView.builder(
                          itemCount: data.length,
