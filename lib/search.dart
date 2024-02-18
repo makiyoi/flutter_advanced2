@@ -93,6 +93,7 @@ class _SearchState extends ConsumerState<Search> {
                 child: TextField(
                   onChanged: (value){
                     ref.read(listFilterProvider.notifier).state = value;
+
                     },
                   decoration: const InputDecoration(
                     labelText: 'キーワード',

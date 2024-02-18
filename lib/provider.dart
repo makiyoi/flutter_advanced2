@@ -10,8 +10,7 @@ final bookStreamProvider = StreamProvider<QuerySnapshot>((ref) { //本のジャ�
 final genres = ref.watch(genreProvider); //本のジャンル
   switch (genres) {
     case Genre.any:
-      return FirebaseFirestore.instance.collection('selectsBook').where(
-          'genre', isEqualTo: '指定なし').snapshots();
+      return FirebaseFirestore.instance.collection('selectsBook').snapshots();
     case Genre.thought:
       return FirebaseFirestore.instance.collection('selectsBook').where(
           'genre', isEqualTo: '人文・思想').snapshots();
@@ -27,8 +26,8 @@ final genres = ref.watch(genreProvider); //本のジャンル
     case Genre.art :
       return FirebaseFirestore.instance.collection('selectsBook').where(
           'genre', isEqualTo: 'アート・建築').snapshots();
-    default:
-      return FirebaseFirestore.instance.collection('selectsBook').snapshots();
+   // default:
+     // return FirebaseFirestore.instance.collection('selectsBook').snapshots();
   }
 });
 
