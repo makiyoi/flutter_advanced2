@@ -15,8 +15,6 @@ class List extends ConsumerWidget {
  //     fromFirestore: (snapshots, _ ) => Book.fromJson(snapshots.data()! ),
   //    toFirestore: (book, _ )=> book.toJson());
 
-
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final AsyncValue <QuerySnapshot> booksStream = ref.watch(bookStreamProvider);
@@ -40,7 +38,7 @@ class List extends ConsumerWidget {
               data:(selectBooks) { //QuerySnapshotはdocumentSnapshotの集まり
                  final data = selectBooks.docs; //documentSnapshotのリストを取得する
                 final filter = ref.watch(listFilterProvider);//フィルターを監視する
-                 data.where((explanation) =>  explanation.contains(filter)).toList();
+                 data.where((book) =>  book['explanation'].contains(filter)).toList();
                  //リストの中の本の内容(explanation)にfilterが含まれるものを取得する。
                  return Expanded(
                      child: ListView.builder(
