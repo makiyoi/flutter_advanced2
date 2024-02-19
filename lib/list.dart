@@ -40,6 +40,7 @@ class List extends ConsumerWidget {
                 final filter = ref.watch(listFilterProvider);//フィルターを監視する
                  final keywordBook = data.where((book) =>  book['explanation'].contains(filter)).toList();
                  //リストの中の本の内容(explanation)にfilterが含まれるものを取得する。
+                 keywordBook.map((book) => book['explanation'].contains(filter)).toList();
                  return Expanded(
                      child: ListView.builder(
                          itemCount: data.length,
