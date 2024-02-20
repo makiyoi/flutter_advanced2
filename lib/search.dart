@@ -91,8 +91,8 @@ class _SearchState extends ConsumerState<Search> {
                SizedBox(
                 width: 200,
                 child: TextField(
-                  onChanged: (value){
-                    ref.read(listFilterProvider.notifier).state = value;
+                  onChanged: (filter){
+                    ref.read(listFilterProvider.notifier).state = filter;
                     },
                   decoration: const InputDecoration(
                     labelText: 'キーワード',
