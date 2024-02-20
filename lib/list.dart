@@ -43,14 +43,14 @@ class List extends ConsumerWidget {
                  keywordBook.where(() => ).toList();
                  return Expanded(
                      child: ListView.builder(
-                         itemCount: data.length,
+                         itemCount: keywordBook.length,
                          itemBuilder: (context, index) {
                            return Card(
                              child: ListTile(
                                leading: const Icon(Icons.book),
-                               title: Text(data[index]['title'] + '-' + data[index]['author'],
+                               title: Text(keywordBook[index]['title'] + '-' + keywordBook[index]['author'],
                                    style: const TextStyle(fontWeight: FontWeight.bold)),
-                               subtitle: Text(data[index]['explanation']),
+                               subtitle: Text(keywordBook[index]['explanation']),
                              ),
                            );
                          }

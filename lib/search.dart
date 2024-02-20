@@ -42,8 +42,8 @@ class _SearchState extends ConsumerState<Search> {
                   builder: (context,ref, _) {
                     return DropdownButton<Genre>(
                       value: ref.watch(genreProvider),
-                      onChanged: (value) {
-                       ref.read(genreProvider.notifier).state = value!;
+                      onChanged: (genre) {
+                       ref.read(genreProvider.notifier).state = genre!;
                       },
                       iconEnabledColor: Colors.brown,
                       iconSize: 30,
