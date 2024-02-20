@@ -26,8 +26,8 @@ final genres = ref.watch(genreProvider); //本のジャンル
     case Genre.art :
       return FirebaseFirestore.instance.collection('selectsBook').where(
           'genre', isEqualTo: 'アート・建築').snapshots();
-   // default:
-     // return FirebaseFirestore.instance.collection('selectsBook').snapshots();
+    default:
+      return FirebaseFirestore.instance.collection('selectsBook').snapshots();
   }
 });
 
