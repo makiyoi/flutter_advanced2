@@ -14,10 +14,10 @@ class Search extends ConsumerStatefulWidget {
 
 class _SearchState extends ConsumerState<Search> {
 
-  final CollectionReference<Book> userRef = FirebaseFirestore.instance.collection('selectsBook')
-      .withConverter<Book>(
-      fromFirestore: (snapshots, _ ) => Book.fromJson(snapshots.data()! ),
-      toFirestore: (book, _ )=> book.toJson());
+ // final CollectionReference<Book> userRef = FirebaseFirestore.instance.collection('selectsBook')
+ //     .withConverter<Book>(
+ //     fromFirestore: (snapshots, _ ) => Book.fromJson(snapshots.data()! ),
+  //    toFirestore: (book, _ )=> book.toJson());
 
 
   @override
@@ -37,7 +37,7 @@ class _SearchState extends ConsumerState<Search> {
               const Text('検索条件',style: TextStyle(fontSize: 30,color: Colors.brown),),
               const SizedBox(height: 30,),
               Text('ジャンル',style: TextStyle(fontSize: 15,color: Colors.brown[200]),),
-              const SizedBox(height: 10,),
+              const SizedBox(height: 10),
               Consumer(
                   builder: (context,ref, _) {
                     return DropdownButton<Genre>(
@@ -78,16 +78,12 @@ class _SearchState extends ConsumerState<Search> {
                           child: Text('アート・建築'),
                         ),
                       ],
-
                     );
                   }
               ),
-              //    ),
-              //   }
-              // ),
-              const SizedBox(height: 50,),
+              const SizedBox(height: 50),
               const Text('フィルター',style: TextStyle(fontSize: 15,color: Colors.brown),),
-              const SizedBox(height: 20,),
+              const SizedBox(height: 20),
                SizedBox(
                 width: 200,
                 child: TextField(
