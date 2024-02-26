@@ -47,7 +47,7 @@ class List extends ConsumerWidget {
                                   return Card(
                                     child: ListTile(
                                       leading: const Icon(Icons.book),
-                                      title: Text(keywordBook[index]['title'] + '-' + keywordBook[index]['author'],
+                                      title: Text('${keywordBook[index]['title']}  -  ${keywordBook[index]['author']}',
                                           style: const TextStyle(fontWeight: FontWeight.bold)),
                                       subtitle: Text(keywordBook[index]['explanation']),
                                     ),
