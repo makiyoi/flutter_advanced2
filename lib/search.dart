@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_advanced_2/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,10 +14,10 @@ class Search extends ConsumerStatefulWidget {
 
 class _SearchState extends ConsumerState<Search> {
 
- // final CollectionReference<Book> userRef = FirebaseFirestore.instance.collection('selectsBook')
- //     .withConverter<Book>(
- //     fromFirestore: (snapshots, _ ) => Book.fromJson(snapshots.data()! ),
-  //    toFirestore: (book, _ )=> book.toJson());
+  final CollectionReference<Book> userRef = FirebaseFirestore.instance.collection('selectsBook')
+      .withConverter<Book>(
+      fromFirestore: (snapshots, _ ) => Book.fromJson(snapshots.data()! ),
+      toFirestore: (book, _ )=> book.toJson());
 
 
   @override
