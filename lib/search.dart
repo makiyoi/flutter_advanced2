@@ -1,7 +1,6 @@
 import 'package:flutter_advanced_2/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_advanced_2/models.dart';
 
 
@@ -24,7 +23,8 @@ class _SearchState extends ConsumerState<Search> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('検索条件',style: TextStyle(color:Colors.brown[200],fontSize: 20,),),
+        title: Text('検索条件',style: TextStyle(color:Colors.brown[200],fontSize: 20)
+        ),
         iconTheme: IconThemeData(color: Colors.brown[200]),
         backgroundColor: Colors.brown,
       ),
@@ -34,12 +34,14 @@ class _SearchState extends ConsumerState<Search> {
           child:Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text('検索条件',style: TextStyle(fontSize: 30,color: Colors.brown),),
-              const SizedBox(height: 30,),
-              Text('ジャンル',style: TextStyle(fontSize: 15,color: Colors.brown[200]),),
+              const Text('検索条件',style: TextStyle(fontSize: 30,color: Colors.brown)
+              ),
+              const SizedBox(height: 30),
+              Text('ジャンル',style: TextStyle(fontSize: 15,color: Colors.brown[200])
+              ),
               const SizedBox(height: 10),
               Consumer(
-                  builder: (context,ref, _) {
+                  builder: (context, ref, _) {
                     return DropdownButton<Genre>(
                       value: ref.watch(genreProvider),
                       onChanged: (genre) {
@@ -82,7 +84,8 @@ class _SearchState extends ConsumerState<Search> {
                   }
               ),
               const SizedBox(height: 50),
-              const Text('フィルター',style: TextStyle(fontSize: 15,color: Colors.brown),),
+              const Text('フィルター', style: TextStyle(fontSize: 15,color: Colors.brown)
+              ),
               const SizedBox(height: 20),
                SizedBox(
                 width: 200,
@@ -93,7 +96,8 @@ class _SearchState extends ConsumerState<Search> {
                   decoration: const InputDecoration(
                     labelText: 'キーワード',
                     border: OutlineInputBorder(
-                        borderSide: BorderSide()),
+                        borderSide: BorderSide()
+                    ),
                   ),
                 ),
               )

@@ -17,23 +17,25 @@ class List extends ConsumerWidget {
     final AsyncValue <QuerySnapshot> booksStream = ref.watch(bookStreamProvider);
     return  Scaffold(
       appBar: AppBar(
-        title: Text('蔵書一覧',style: TextStyle(color:Colors.brown[200],fontSize: 20,),),
+        title: Text('蔵書一覧',style: TextStyle(color:Colors.brown[200],fontSize: 20)
+        ),
         centerTitle: false,
         actions: [
           IconButton(onPressed: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const Search())),
-              icon: Icon(Icons.search,color: Colors.brown[200],size: 40,))
+              icon: Icon(Icons.search,color: Colors.brown[200],size: 40)
+          ),
         ],
         backgroundColor: Colors.brown,
       ),
       body: Consumer(
         builder: (context, ref, _) {
-          return
-            Padding(
+          return Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
                   booksStream.when(
-                    error: (err, _) => Text(err.toString()),
+                    error: (err, _) => Text(err.toString()
+                    ),
                     loading: () => const CircularProgressIndicator(),
                     data:(selectBooks) { //QuerySnapshotはdocumentSnapshotの集まり
                         final data = selectBooks.docs; //documentSnapshotのリストを取得する
@@ -48,7 +50,8 @@ class List extends ConsumerWidget {
                                     child: ListTile(
                                       leading: const Icon(Icons.book),
                                       title: Text('${keywordBook[index]['title']}  -  ${keywordBook[index]['author']}',
-                                          style: const TextStyle(fontWeight: FontWeight.bold)),
+                                          style: const TextStyle(fontWeight: FontWeight.bold)
+                                      ),
                                       subtitle: Text(keywordBook[index]['explanation']),
                                     ),
                                   );
@@ -60,8 +63,8 @@ class List extends ConsumerWidget {
                 ],
               ),
             );
-        },
-        ),
+          },
+      ),
     );
   }
 }
